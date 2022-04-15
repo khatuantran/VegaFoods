@@ -1,0 +1,145 @@
+<!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section set-bg" data-setbg="/img/breadcrumb.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>PRODUCT DETAIL</h2>
+                        <div class="breadcrumb__option">
+                            <a href="/">Home</a>
+                            <a href="/">Vegetables</a>
+                            <span>{{prod.name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Product Details Section Begin -->
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large"
+                                src={{prod.img}} alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <h3>{{prod.name}}</h3>
+                        <div class="product__details__rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <span>(18 reviews)</span>
+                        </div>
+                        <div class="product__details__price"><span>$</span> <span id="price-{{prod._id}}">{{renderPrice prod}}</span></div>
+                        <p>{{prod.description}}</p> 
+                        <div class="product__details__quantity">
+                            <div class="quantity" >
+                                <div class="pro-qty">
+                                    <input class="quantative-event-change" type="text" value="1" id="quantative-{{prod._id}}">
+                                </div>
+                            </div>
+                        </div>
+                        <a href="/shoping-cart/add-to-cart?productID={{prod._id}}" class="primary-btn" id="add-to-cart-click-btn">ADD TO CARD</a>
+                        <a href="/shoping-cart/add-to-loveItem?productID={{prod._id}}" class="heart-icon" id="add-to-loveItem-click-btn"><span class="icon_heart_alt"></span></a>
+                        <ul>
+                            <li><b>Availability</b> <span>In Stock</span></li>
+                            <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
+                            {{!-- <li><b>Weight</b> <span>0.5 kg</span></li> --}}
+                            <li><b>Share on</b>
+                                <div class="share">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                    aria-selected="true">Description</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                    aria-selected="false">Information</a>
+                            </li>
+                            {{!-- <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                                    aria-selected="false">Reviews (<span id="number-comment-product">{{totalComment.totalDocs}}</span>)</a>
+                            </li> --}}
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <p>{{prod.information}}</p>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <p>{{prod.description}}</p>
+                                </div>
+                            </div>
+                            {{!-- <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                <div class="product__details__tab__desc">                                                                
+                                    <div class="d-flex justify-content-center row">
+                                        <div class="d-flex flex-column col-md-12">
+                                            <div class="coment-bottom bg-white p-2 px-4">
+                                                {{#if user}}
+                                                <div class="d-flex flex-row add-comment-section mb-4">
+                                                    <img class="img-fluid img-responsive rounded-circle mr-2" src="{{user.img}}" width="38">
+                                                    <input type="hidden" id="name-user-comment" value="{{user.fullName}}">
+                                                    <input type="text" id="content-user-comment" class="form-control mr-3" placeholder="Add comment">
+                                                    <button id="comment-btn-click" class="btn btn-primary" type="button" style="background-color:#7fad39; border:none">Comment</button>
+                                                </div>
+                                                {{else}}
+                                                <div class="d-flex flex-row add-comment-section mb-4">    
+                                                    <input type="text" id="name-user-comment" class="form-control mr-3 col-md-2 col-lg-2" placeholder="Enter name">   
+                                                    <input type="text" id="content-user-comment" class="form-control mr-3" placeholder="Add comment">
+                                                    <button id="comment-btn-click" class="btn btn-primary" type="button" style="background-color:#7fad39; border:none">Comment</button>
+                                                </div>
+                                                {{/if}}
+                                                <div class="comment-product">
+                                                    {{#each comments}}
+                                                    <div class="commented-section mt-2 ">
+                                                        <div class="d-flex flex-row align-items-center commented-user">
+                                                            <h5 class="mr-2 mb-1" style="font-weight: 650;">{{this.userName}}</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">{{this.timeComment}}</span>
+                                                        </div>
+                                                        <div class="ml-4 comment-text-sm">
+                                                            <span>{{this.content}}</span>
+                                                        </div>
+                                                    </div>
+                                                    {{/each}}
+                                                </div> 
+                                                <div class="row justify-content-center">
+                                                    <div class="product__pagination">
+                                                        {{pagination totalComment}}
+                                                    </div>
+                                                </div>                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Details Section End -->
+
