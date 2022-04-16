@@ -3633,17 +3633,20 @@ ol {
 }
 .brand_logo_container {
 	position: absolute;
-	height: 160px;
-	width: 170px;
-	top: -75px;
-	border-radius: 50%;
-	background: #FFFFFF;
-	padding: 10px;
-	text-align: center;
+    height: 170px;
+    width: 179px;
+    top: -75px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    padding: 10px;
+    text-align: center;
 }
 .brand_logo {
-	height: 130px;
-	width: 100px;
+	height: 100px;
+    width: 135px;
+    position: absolute;
+    left: 22px;
+    top: 36px;
 	/* border-radius: 50%;
 	border: 2px solid white; */
 }

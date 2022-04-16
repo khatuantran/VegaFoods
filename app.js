@@ -3,15 +3,23 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const session = require('express-session');
+
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const shopRouter = require('./routes/shop');
 const blogRouter = require('./routes/blog');
 const contactRouter = require('./routes/contact');
-require('./views/hbs-config');
+const authRouter = require('./routes/auth');
+const passport = require('./api/passport');
+const middleware = require('./middlewares/middleware');
+
+
+
 
 const app = express();
 // view engine setup
+require('./views/hbs-config');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -22,10 +30,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true 
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
-
-
+app.use(middleware.loginCheck)
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
+
 app.use('/users', usersRouter);
 app.use('/shop-grid', shopRouter)
 app.use('/blog', blogRouter);

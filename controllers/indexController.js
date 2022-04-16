@@ -21,9 +21,6 @@ class IndexController{
                 res.render('index', {departments, categories, featuredProducts, latest, activeHome: true})
             })
     }
-
-    
-
 }
 
 module.exports = new IndexController;
