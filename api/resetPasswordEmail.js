@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
-module.exports = (email, activationString, hostName) => {
+
+module.exports = (email, resetPasswordString, hostName) => {
     const transporter = nodemailer.createTransport({
         service: 'hotmail',
         // port: 587,
@@ -19,10 +20,10 @@ module.exports = (email, activationString, hostName) => {
     const message = {
         from: '"VegaFoods"<vegafoods@outlook.com>',
         to: email,
-        subject: 'Activation your acount now!',
+        subject: 'Reset your password',
         text: 'and easy to do anywhere, even with Node.js',
         html:`<h1>Thanks for register your acount with VegaFoods</h1>
-        <p>Click here to activate<a href="${link}/auth/activate?email=${email}&activationString=${activationString}"> Active now</a></p>`,
+        <p>Click here to reset your password<a href="${link}/auth/reset-password?email=${email}&resetPasswordString=${resetPasswordString}"> reset</a></p>`,
     }
     transporter
         .sendMail(message)

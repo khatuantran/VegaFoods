@@ -6,7 +6,7 @@ const logger = require('morgan');
 const session = require('express-session');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const userRouter = require('./routes/user');
 const shopRouter = require('./routes/shop');
 const blogRouter = require('./routes/blog');
 const contactRouter = require('./routes/contact');
@@ -42,7 +42,7 @@ app.use(middleware.loginCheck)
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 
-app.use('/users', usersRouter);
+app.use('/user', middleware.loginGuard, userRouter);
 app.use('/shop-grid', shopRouter)
 app.use('/blog', blogRouter);
 app.use('/contact', contactRouter);

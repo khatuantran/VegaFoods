@@ -36,6 +36,12 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
+router.get('/forget-password', authController.renderForgetPassword)
+router.post('/forget-password', authController.checkAndResetPassword)
+
+router.get('/reset-password', authController.renderResetPassword)
+router.post('/reset-password', authController.resetPassword)
+
 router.get('/register', authController.renderRegistrationPage)
 router.post('/register', middleware.validationEmail, authController.register)
 router.get('/logout', authController.logout)
