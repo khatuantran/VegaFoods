@@ -249,7 +249,7 @@
 
                 $.notify("Add to cart sucess!", "success");
 
-            } else { window.location.href = '/login'}
+            } else { window.location.href = '/auth/login'}
           })        
     })
     
@@ -261,7 +261,7 @@
                 $('#love-item-number').text(res.number)
                 $('#love-item-number-mobile').text(res.number)
                 $.notify("Add to love item sucess!", "success");
-            } else {window.location.href = "/login"};
+            } else {window.location.href = "/auth/login"};
 
           })                  
     })
@@ -389,7 +389,7 @@
             if(res.number){
                 window.location.href = '/shoping-cart'
 
-            } else { window.location.href = '/login'}
+            } else { window.location.href = '/auth/login'}
           })        
     })
 
@@ -400,7 +400,7 @@
         $.get(href, function(res) {
             if(res.number){
                 $.notify("Add to love item sucess!", "success");
-            } else { window.location.href = '/login'}
+            } else { window.location.href = '/auth/login'}
           })        
     })
 

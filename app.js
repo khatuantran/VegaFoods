@@ -11,6 +11,7 @@ const shopRouter = require('./routes/shop');
 const blogRouter = require('./routes/blog');
 const contactRouter = require('./routes/contact');
 const authRouter = require('./routes/auth');
+const cartRouter = require('./routes/cart');
 const passport = require('./api/passport');
 const middleware = require('./middlewares/middleware');
 
@@ -45,6 +46,7 @@ app.use('/users', usersRouter);
 app.use('/shop-grid', shopRouter)
 app.use('/blog', blogRouter);
 app.use('/contact', contactRouter);
+app.use('/shoping-cart', middleware.loginGuard, cartRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -10,8 +10,8 @@ const activeEmailSender = require('../api/activeAccount')
 class AuthController{
     
     //Find email of user
-    findUserByEmail(emailAdress){
-        return user.findOne({email: emailAdress}).lean()
+    findUserByEmail(emailAddress){
+        return user.findOne({email: emailAddress})
     }
 
     // GET /login
@@ -22,7 +22,6 @@ class AuthController{
 
     
     isValidPassword(password, user){
-
         return bcrypt.compare(password, user.password)
     }
 
@@ -46,11 +45,9 @@ class AuthController{
         }, {isActivated: true})
         if(doc){
             req.login(doc, function(err) {
-                if (err) { 
-                    console.log(err)
-                    return next(err); }
+                if (err) { return next(err) }
                 return res.redirect('/');
-              });
+            });
         }
         else {
             console.log("khong tim thay")

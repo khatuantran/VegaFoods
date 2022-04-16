@@ -10,7 +10,7 @@
             <p class="divider-text">
                 <span class="bg-light">OR</span>
             </p> --}}
-            <form action="/register" method="POST">
+            <form action="/auth/register" method="POST">
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -60,13 +60,13 @@
                 </div>
                 <input name="repeatPassword" class="form-control" placeholder="Repeat password" type="password" required>
             </div> <!-- form-group// -->
-            {{#if wrong}}
+            {{#if status}}
                 <div style="float:right; color:red; margin-bottom:5px">{{status}}</div>
             {{/if}} 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
             </div> <!-- form-group// -->     
-            <p class="text-center">Have an account? <a href="/login">Log In</a> </p>                                                                 
+            <p class="text-center">Have an account? <a href="/auth/login">Log In</a> </p>                                                                 
         </form>
         </article>
         </div> <!-- card.// -->
