@@ -1,7 +1,7 @@
  <div class="container-fluid h-100 register_form">
         <div class="card bg-light h-100">
         <article class="card-body mx-auto card-register_form" style="max-width: 500px;padding-top: 80px">
-            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <h4 class="card-title mt-3 text-center">Create Admin Account</h4>
             {{!-- <p class="text-center">Get started with your free account</p>
             <p>
                 <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
@@ -10,7 +10,7 @@
             <p class="divider-text">
                 <span class="bg-light">OR</span>
             </p> --}}
-            <form action="/auth/register" method="POST">
+            <form action="/admin/create-admin" method="POST">
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
@@ -45,7 +45,6 @@
                     <option value="Manager">Manager</option>
                     <option value="Accaunting">Accaunting</option>
                     <option value="Student">Student</option>
-                    <option value="Another">Another</option>
                 </select>
             </div> <!-- form-group end.// -->
             <div class="form-group input-group">
@@ -60,13 +59,12 @@
                 </div>
                 <input name="repeatPassword" class="form-control" placeholder="Repeat password" type="password" required>
             </div> <!-- form-group// -->
-            {{#if status}}
+            {{#if wrong}}
                 <div style="float:right; color:red; margin-bottom:5px">{{status}}</div>
             {{/if}} 
             <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
-            </div> <!-- form-group// -->     
-            <p class="text-center">Have an account? <a href="/auth/login">Log In</a> </p>                                                                 
+            </div> <!-- form-group// -->                                                                 
         </form>
         </article>
         </div> <!-- card.// -->

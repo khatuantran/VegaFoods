@@ -23,10 +23,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
-                        <table>
+                        <table style="border: 1px solid black;">
                             <thead>
-                                <tr>
-                                    <th class="shoping__product">Order</th>                                    
+                                <tr style="border: 1px solid black;">
+                                    <th class="shoping__product">Customer</th>
+                                    <th>Order</th>                                    
                                     <th>Quantity</th>
                                     <th>Price</th>
                                     <th>Total</th>
@@ -37,36 +38,42 @@
                             </thead>
                             <tbody>
                                 {{#each orderList}}
-                                <tr id="item-{{this._id}}">
-
-                                    <td>
+                                <tr id="order-{{this._id}}">
+                                    <td style="text-align: left; padding: 5px">   
+                                        <input type="hidden" name="userID" value={{this.userID}}>                                     
+                                        <div>Name: {{this.userName}}</div>
+                                        <div>Phone: {{this.phoneNumber}}</div>
+                                        <div>Address: {{this.userAddress}}</div>
+                                    </td>
+                                    <td style="text-align: left; padding: 5px">
                                         {{#each this.itemList}}
-                                        <div style="text-align: left">{{this.productName}}</div>
+                                        <div>{{this.productName}}</div>
                                         {{/each}}
                                     </td>
 
-                                    <td>
+                                    <td style="padding: 5px">
                                         {{#each this.itemList}}
                                         <div>{{this.quantity}}</div>
                                         {{/each}}
                                     </td>
-                                    <td>
+                                    <td style="padding: 5px">
                                         {{#each this.itemList}}
                                         <div>{{this.productPrice}}</div>
                                         {{/each}}
                                     </td>
-                                    <td>
+                                    <td style="padding: 5px">
                                         {{this.total}}
                                     </td>
-                                    <td>
+                                    <td style="text-align: left;padding: 5px">
                                         <div>{{this.userAddress}}</div>
                                     </td>
                                     <td>
-                                        <div id="state-{{this._id}}">{{this.state}}</div>
+                                        <div id="state-{{this.id}}" style="padding: 5px">{{this.state}}</div>
                                     </td>
-                                    <td id="btn-{{this._id}}">
-                                        <a href="/user/order/recieved?orderId={{this._id}}" class="btn btn-primary recieved-btn-click">Recieved</a>
+                                    <td  id="item-{{this._id}}">
+                                        <a href="/admin/order/accept?orderId={{this._id}}" class="btn btn-primary accept-btn-click" style="margin-bottom: 5px;">Accept</a>
                                         <button class="btn btn-danger cancle-btn-click">Cancle</button>
+
                                     </td>
                                 </tr>
                                 {{/each}}
@@ -91,22 +98,18 @@
             -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
             box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
         }
-
         .card {
             background-color: #fff;
             border-bottom: none;
             padding: 24px;
         }
-
         .card-header:first-child {
             border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0
         }
-
         .card .card-body {
             padding: 30px;
             background-color: transparent
         }
-
         .btn-primary,
         .btn-primary.disabled,
         .btn-primary:disabled {
@@ -121,7 +124,7 @@
                     <div class="card-body cart">
                         <div class="col-sm-12 empty-cart-cls text-center"> <img src="/img/emptyCart.png" width="130" height="130" class="img-fluid mb-4 mr-3">
                             <h3><strong>Your order is Empty</strong></h3>
-                            <h4>We always bring the freshest and cleanest products!</h4> <a href="/shop-grid" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+                            <h4>We always bring the freshest and cleanest products!</h4> <a href="/shop-grid" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Back</a>
                         </div>
                     </div>
                 </div>

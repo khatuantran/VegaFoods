@@ -3,13 +3,13 @@ const authController = require('../controllers/authController')
 const router = express.Router();
 const passport = require('../api/passport');
 const randomString = require('randomstring')
-const modelUser = require('../models/user')
+const modelUser = require('../models/admin')
 const activeAccountMailSender = require('../api/activeAccount')
 const middleware = require('../middlewares/middleware');
 
 /* GET home page. */
 router.all('/',  (req, res) => res.redirect('/auth/login'));
-router.get('/login',  middleware.loginAfterLogin ,authController.renderLogin);
+router.get('/login',  middleware.loginAfterLogin , authController.renderLogin);
 
 router.post('/login', function(req, res, next) {
   /* look at the 2nd parameter to the below call */

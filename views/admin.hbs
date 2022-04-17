@@ -1,0 +1,36 @@
+<div class="container" style="min-height: 85%">
+    <h3 align="center" style="margin-bottom: 10px">User List</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Work</th>
+                <th>Address</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users.docs}}
+            <tr>
+                <td>{{this.fullName}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.phone}}</td>
+                <td>{{this.work}}</td>       
+                <td>{{this.address}}</td>
+                {{#if this.isActivated}}
+                <td>Actived</td>
+                {{else}}
+                <td>Not Actived</td>
+                {{/if}}
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <div class="row justify-content-center">
+        <div class="product__pagination">
+            {{pagination user}}
+        </div>
+    </div>
+</div>

@@ -6,7 +6,7 @@ const logger = require('morgan');
 const session = require('express-session');
 
 const indexRouter = require('./routes/index');
-const userRouter = require('./routes/user');
+const adminRouter = require('./routes/admin');
 const shopRouter = require('./routes/shop');
 const authRouter = require('./routes/auth');
 
@@ -40,7 +40,7 @@ app.use(middleware.loginCheck)
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 
-app.use('/user', middleware.loginGuard, userRouter);
+app.use('/admin', middleware.loginGuard, adminRouter);
 app.use('/shop-grid', shopRouter)
 
 

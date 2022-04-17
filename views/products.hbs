@@ -1,0 +1,40 @@
+<div class="container" style="min-height: 85%">
+    <h3 align="center" style="margin-bottom: 10px"><a class="btn btn-secondary" href="/admin/product/create"><i class="fa fa-plus"></i> Create New</a> Product List</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Sale</th>
+                <th>Type</th>
+                <th>Featured product</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each product.docs}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>${{renderPrice this}}</td>
+                <td>{{this.percentSale}}%</td>
+                <td>{{this.type}}</td>
+                {{#if this.featured}}
+                <td>Yes</td>
+                {{else}}
+                <td>No</td>
+                {{/if}}
+                {{!-- <td>{{this.description}}</td> --}}
+                <td>
+                    <a href="/admin/product/edit/{{this._id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                    <a href="/admin/product/delete/{{this._id}}" onclick="return confirm('Are you sure to delete this record ?');"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <div class="row justify-content-center">
+        <div class="product__pagination">
+            {{pagination product}}
+        </div>
+    </div>
+</div>

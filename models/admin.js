@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const user = new Schema({
+const admin = new Schema({
    // id: mongoose.ObjectId,
    fullName: String,
    email: {type: String, unique: true},
@@ -17,4 +17,4 @@ const user = new Schema({
    resetPasswordString: String,
 });
 
-module.exports = mongoose.model('users', user);
+module.exports = mongoose.model('admins', admin);

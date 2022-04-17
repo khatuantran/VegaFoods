@@ -1,4 +1,5 @@
 const user = require('../models/user');
+const admin = require('../models/admin');
 const order = require('../models/order');
 const bcrypt = require('bcrypt');
 const randomString = require('randomstring')
@@ -13,7 +14,7 @@ class AuthController{
     checkAndResetPassword(req, res, next){
         const resetPasswordString = randomString.generate();
         //console.log(req.body.email)
-        user.findOneAndUpdate({email: req.body.email}, {resetPasswordString}, {new: true}, function(err, doc){
+        admin.findOneAndUpdate({email: req.body.email}, {resetPasswordString}, {new: true}, function(err, doc){
             if(doc){
                 resetEmail(req.body.email, resetPasswordString, req.hostname)
                 res.render('email-checking')
@@ -34,7 +35,7 @@ class AuthController{
 
         const newResetPassword = randomString.generate();
         bcrypt.hash(password, 10, function(err, passwordHash) {
-            user.findOneAndUpdate(
+            admin.findOneAndUpdate(
                 {email: email, resetPasswordString: resetPassword}, 
                 {resetPasswordString: newResetPassword, password: passwordHash}, {new: true}, 
                 function(err, doc){
@@ -50,7 +51,7 @@ class AuthController{
     }
     //Find email of user
     findUserByEmail(emailAddress){
-        return user.findOne({email: emailAddress})
+        return admin.findOne({email: emailAddress})
     }
 
     // GET /login
@@ -60,8 +61,8 @@ class AuthController{
     }
 
     
-    isValidPassword(password, user){
-        return bcrypt.compare(password, user.password)
+    isValidPassword(password, admin){
+        return bcrypt.compare(password, admin.password)
     }
 
     logout(req, res, next){
@@ -77,7 +78,7 @@ class AuthController{
 
     async activate(req, res, next){
         // console.log(req.query)
-        const doc = await user.findOneAndUpdate({
+        const doc = await admin.findOneAndUpdate({
             email: req.query.email, 
             activationString: req.query.activationString,
             isActivated: false,
@@ -99,7 +100,7 @@ class AuthController{
         const activationString = randomString.generate();
         // console.log("sai")
         bcrypt.hash(req.body.password, 10, function(err, passwordHash) {                                    
-            user.create({
+            admin.create({
                 email: req.body.email,
                 phone: req.body.phoneNumber,
                 role: 0,
@@ -115,19 +116,9 @@ class AuthController{
                 if(!err){
                     activeEmailSender(req.body.email, activationString, req.hostname)
                     res.render('email-checking');
-                    cart.create({
-                        userID: doc._id,
-                    })
-                    loveItem.create({
-                        userID: doc._id,
-                    })
-                    // req.login(doc, function (err){
-                    //     if(!err) { res.redirect('/') }
-                    //     else {console.log(err)}
-                    // })
                 } else {
                     const newActiveString = randomString.generate();
-                    user.updateOne({email: req.body.email}, {
+                    admin.updateOne({email: req.body.email}, {
                         phone: req.body.phoneNumber,
                         fullName: req.body.fullName,
                         work: req.body.work,
