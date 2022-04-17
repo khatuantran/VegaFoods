@@ -15,16 +15,16 @@ router.post('/login', function(req, res, next) {
   /* look at the 2nd parameter to the below call */
   passport.authenticate('local', function(err, user) {
     if (err) { return next(err); }
-    if (!user) { return res.redirect('/auth/login?wrongPassword'); }
+    if (!user || !user.isActivated) { return res.redirect('/auth/login?wrongPassword'); }
     //check if account has'n activated then send a new string active for user email
-    if(!user.isActivated){
-      const newActiveString = randomString.generate();
-      modelUser.updateOne({email: user.email}, {activationString: newActiveString})
-        .then(doc => {
-          mailSender(user.email, newActiveString, req.hostname)
-        })
-      return res.render('email-checking')
-    }
+    // if(!user.isActivated){
+    //   const newActiveString = randomString.generate();
+    //   modelUser.updateOne({email: user.email}, {activationString: newActiveString})
+    //     .then(doc => {
+    //       activeAccountMailSender(user.email, newActiveString, req.hostname)
+    //     })
+    //   return res.render('email-checking')
+    // }
 
     //authenticate success then login for user
     req.logIn(user, function(err) {

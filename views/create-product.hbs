@@ -1,0 +1,74 @@
+    <style>
+        .nice-select, .nice-select ul{
+            width: 100%;
+        }
+    </style>
+
+    <section class="breadcrumb-section set-bg" data-setbg="/img/breadcrumb.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="breadcrumb__text">
+                            <h2>Create product</h2>
+                            <div class="breadcrumb__option">
+                                <a href="/">Home</a>
+                                <span>Create product</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <div class="container" style="margin-top: 15px;">
+        <form action="/admin/product/create" enctype="multipart/form-data" method="POST">
+            <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" class="form-control" name="name" placeholder="Enter product name" id="product-name-text">
+                <div class="text-danger"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Price</label>
+                    <input type="number" class="form-control" name="price" placeholder="Enter price of product" id="product-price-text">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Percent sale</label>
+                    <input type="number" class="form-control" name="percentSale" placeholder="Enter percent sale" id="product-percentSale-text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Image</label>
+                <input type="file" class="form-control" name="productImage" id="product-image-text">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Featured</label>
+                    <select name="featured">
+                        <option value="1">True</option>
+                        <option value="0">False</option>
+                    </select>   
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Type</label>
+                    <select name="type">
+                        {{#each department}}
+                            <option value="{{this.name}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>  
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Information</label>
+                <input type="text" class="form-control" name="information" placeholder="What is the information ?">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" class="form-control" name="description" placeholder="Sweet,...">
+            </div>
+            <div class="form-group d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary" style="margin-right: 10px"><i class="fa fa-database"></i>Create</button>
+                <a class="btn btn-secondary" href="/admin/product"><i class="fa fa-list-alt"></i> View All</a>
+            </div>
+        </form>
+    </div>

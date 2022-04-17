@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 const Schema = mongoose.Schema;
 
 const admin = new Schema({
@@ -16,5 +17,5 @@ const admin = new Schema({
    isActivated: Boolean,
    resetPasswordString: String,
 });
-
+admin.plugin(mongoosePaginate);
 module.exports = mongoose.model('admins', admin);

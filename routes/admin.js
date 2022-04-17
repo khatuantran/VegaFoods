@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const adminController = require('../controllers/adminController')
 const upload = require('../api/multer')
+const middleware = require('../middlewares/middleware');
 /* GET users listing. */
 router.get('/', adminController.renderInformationPage);
 
@@ -18,7 +19,12 @@ router.post('/change-image', upload.single('userImage'), adminController.changeI
 // router.get('/order-list/cancle-order',  userController.cancleOrder)
 // router.get('/order-list/recieved',  userController.recievedProduct)
 
-router.get('/product/edit/:id',  adminController.renderEditProductPage)
+router.get('/manage-admin', adminController.renderManageAdminPage)
+
+
+router.get('/product', adminController.renderProductPage)
+
+router.get('/product/edit/:id', adminController.renderEditProductPage)
 
 router.get('/product/create', adminController.renderCreateProductPage)
 
@@ -37,4 +43,5 @@ router.get('/order/accept', adminController.acceptOrder);
 router.get('/create-admin', adminController.renderCreateAdminPage)
 
 router.post('/create-admin', middleware.validationEmail, adminController.createAdmin)
+
 module.exports = router;

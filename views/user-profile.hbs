@@ -13,7 +13,7 @@
                       <p class="text-muted font-size-sm">{{user.address}}</p>
                       {{!-- <button class="btn btn-primary">Follow</button> --}}
                       <div style="font-weight: 700;">Change avatar</div>
-                      <form action="/user/change-image" enctype="multipart/form-data" method="POST">
+                      <form action="/admin/change-image" enctype="multipart/form-data" method="POST">
                         <input type="file" name="userImage"/>
                         <input class="btn btn-primary" type="submit" value="Save"/>
                       </form>
@@ -73,8 +73,9 @@
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <a class="btn btn-info " href="/user/edit">Edit</a>
-                      <a class="btn btn-info " href="/user/change-password">Change password</a>
+                      <a class="btn btn-info " href="/admin/edit">Edit</a>
+                      <a class="btn btn-info " href="/admin/change-password">Change password</a>
+                      <a class="btn btn-info " href="/admin/create-admin">Create admin</a>
                     </div>
                   </div>
                 </div>
