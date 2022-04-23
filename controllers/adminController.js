@@ -168,9 +168,8 @@ class AdminController{
         const doc = await product.findOneAndDelete({_id: idProduct})
         //console.log(doc)
         if(doc){
-            if(doc.img !==''){
-                //console.log(doc.img)
-                await cloudinary.uploader.destroy(doc.img)    
+            if(doc.cloudinary_id !==''){
+                await cloudinary.uploader.destroy(doc.cloudinary_id)    
                 //res.redirect('/admin/product') 
             }
             res.redirect('/admin/product') 

@@ -13,6 +13,7 @@ const product = new Schema({
   percentSale: {type:Number, default:0},
   type: String,
   featured: {type:Boolean, default: false},
+  cloudinary_id: {type:String, default:""},
 }, {timestamps:true});
 product.plugin(mongoosePaginate);
 module.exports = mongoose.model('products', product);
