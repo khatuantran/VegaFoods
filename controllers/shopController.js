@@ -36,20 +36,10 @@ class ShopController{
     renderDetail(req, res, next){
         
         Promise.all([
-            products.findById(req.params.id),
-            comment.paginate({productId: req.params.id}, {page: req.query.page || 1, limit: 3, sort: {createdAt: -1}}),           
+            products.findById(req.params.id),       
         ])
-            .then(([products, comments]) =>{
-                const commentUser = comments.docs.map((comment) =>{
-                    const date = comment.createdAt
-                    const timeComment = date.getHours() + 'h' + date.getMinutes() + ' - ' + date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()
-                    return {
-                        userName: comment.userName,
-                        timeComment,
-                        content: comment.content
-                    };
-                })
-                res.render('product-details', {prod: products, totalComment: comments, comments: commentUser})
+            .then(([products]) =>{
+                res.render('product-details', {prod: products})
             })
             .catch(next)
     }

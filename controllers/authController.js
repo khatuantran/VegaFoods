@@ -84,10 +84,11 @@ class AuthController{
             isActivated: false,
         }, {isActivated: true})
         if(doc){
-            req.login(doc, function(err) {
-                if (err) { return next(err) }
-                return res.redirect('/');
-            });
+            // req.login(doc, function(err) {
+            //     if (err) { return next(err) }
+            //     return res.redirect('/');
+            // });
+            res.redirect('/admin/manage-admin')
         }
         else {
             console.log("khong tim thay")

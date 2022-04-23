@@ -42,8 +42,8 @@ router.post('/forget-password', authController.checkAndResetPassword)
 router.get('/reset-password', authController.renderResetPassword)
 router.post('/reset-password', authController.resetPassword)
 
-router.get('/register', authController.renderRegistrationPage)
-router.post('/register', middleware.validationEmail, authController.register)
+// router.get('/register', authController.renderRegistrationPage)
+// router.post('/register', middleware.validationEmail, authController.register)
 router.get('/logout', authController.logout)
 router.get('/activate', authController.activate)
  
